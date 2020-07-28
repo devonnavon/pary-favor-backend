@@ -5,7 +5,7 @@ import { ApolloServer } from 'apollo-server-express';
 
 import schema from './schema';
 import resolvers from './resolvers';
-import models from './models';
+import models, { sequelize } from './models';
 
 const app = express();
 
@@ -16,12 +16,53 @@ const server = new ApolloServer({
 	resolvers,
 	context: {
 		models,
-		me: models.users[1],
+		//me: models.users[1],
 	},
 });
 
 server.applyMiddleware({ app, path: '/graphql' });
 
-app.listen({ port: 8000 }, () => {
-	console.log('Apollo Server on http://localhost:8000/graphql');
+const eraseDatabaseOnSync = true;
+
+sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
+	if (eraseDatabaseOnSync) {
+		createUsersWithMessages();
+	}
+
+	app.listen(process.env.PORT, () =>
+		console.log(`Example app listening on port ${process.env.PORT}!`)
+	);
 });
+
+const createUsersWithMessages = async () => {
+	await models.User.create(
+		{
+			username: 'rwieruch',
+			messages: [
+				{
+					text: 'Published the Road to learn React',
+				},
+			],
+		},
+		{
+			include: [models.Message],
+		}
+	);
+
+	await models.User.create(
+		{
+			username: 'ddavids',
+			messages: [
+				{
+					text: 'Happy to release ...',
+				},
+				{
+					text: 'Published a complete ...',
+				},
+			],
+		},
+		{
+			include: [models.Message],
+		}
+	);
+};

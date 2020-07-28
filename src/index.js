@@ -1,7 +1,8 @@
 import 'dotenv/config';
 import cors from 'cors';
 import express from 'express';
-import { ApolloServer } from 'apollo-server-express';
+import jwt from 'jsonwebtoken';
+import { ApolloServer, AuthenticationError } from 'apollo-server-express';
 
 import schema from './schema';
 import resolvers from './resolvers';
@@ -10,6 +11,18 @@ import models, { sequelize } from './models';
 const app = express();
 
 app.use(cors());
+
+const getMe = async (req) => {
+	const token = req.headers['x-token'];
+
+	if (token) {
+		try {
+			return await jwt.verify(token, process.env.SECRET);
+		} catch (e) {
+			throw new AuthenticationError('Your session expired. Sign in again.');
+		}
+	}
+};
 
 const server = new ApolloServer({
 	typeDefs: schema,
@@ -26,10 +39,14 @@ const server = new ApolloServer({
 			message,
 		};
 	},
-	context: async () => ({
-		models,
-		me: await models.User.findByLogin('rwieruch'),
-	}),
+	context: async ({ req }) => {
+		const me = await getMe(req);
+		return {
+			models,
+			me,
+			secret: process.env.SECRET,
+		};
+	},
 });
 
 server.applyMiddleware({ app, path: '/graphql' });
@@ -50,10 +67,12 @@ sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
 const createUsersWithMessages = async () => {
 	await models.User.create(
 		{
-			username: 'rwieruch',
+			username: 'len',
+			email: 'len@noshi.globe',
+			password: 'qqqqqqq',
 			messages: [
 				{
-					text: 'Published the Road to learn React',
+					text: 'yo yo yo',
 				},
 			],
 		},
@@ -64,13 +83,15 @@ const createUsersWithMessages = async () => {
 
 	await models.User.create(
 		{
-			username: 'ddavids',
+			username: 'dev',
+			email: 'dev@noshi.world',
+			password: 'qqqqqqq',
 			messages: [
 				{
-					text: 'Happy to release ...',
+					text: 'sharks scare me',
 				},
 				{
-					text: 'Published a complete ...',
+					text: 'but imma still shred',
 				},
 			],
 		},

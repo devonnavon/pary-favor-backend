@@ -1,4 +1,4 @@
-import Sequelize from 'sequelize';
+import Sequelize, { DataTypes } from 'sequelize';
 import user from './user';
 import message from './message';
 
@@ -12,8 +12,8 @@ const sequelize = new Sequelize(
 );
 
 const models = {
-	User: user(sequelize, Sequelize.DataTypes),
-	Message: message(sequelize, Sequelize.DataTypes),
+	User: user(sequelize, DataTypes),
+	Message: message(sequelize, DataTypes),
 };
 
 Object.keys(models).forEach((key) => {

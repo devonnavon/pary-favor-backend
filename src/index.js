@@ -55,7 +55,7 @@ const eraseDatabaseOnSync = true;
 
 sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
 	if (eraseDatabaseOnSync) {
-		createUsersWithMessages();
+		createUsersWithMessages(new Date());
 	}
 
 	app.listen(process.env.PORT, () =>
@@ -64,7 +64,7 @@ sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
 });
 
 //DATABASE SEED FUNCITON (CAN REMOVE IN PROD)
-const createUsersWithMessages = async () => {
+const createUsersWithMessages = async (date) => {
 	await models.User.create(
 		{
 			username: 'len',
@@ -73,6 +73,7 @@ const createUsersWithMessages = async () => {
 			messages: [
 				{
 					text: 'yo yo yo',
+					createdAt: date.setSeconds(date.getSeconds() + 1),
 				},
 			],
 		},
@@ -90,9 +91,11 @@ const createUsersWithMessages = async () => {
 			messages: [
 				{
 					text: 'sharks scare me',
+					createdAt: date.setSeconds(date.getSeconds() + 1),
 				},
 				{
 					text: 'but imma still shred',
+					createdAt: date.setSeconds(date.getSeconds() + 1),
 				},
 			],
 		},
@@ -109,9 +112,11 @@ const createUsersWithMessages = async () => {
 			messages: [
 				{
 					text: 'delete me',
+					createdAt: date.setSeconds(date.getSeconds() + 1),
 				},
 				{
 					text: 'I dont want to be here',
+					createdAt: date.setSeconds(date.getSeconds() + 1),
 				},
 			],
 		},

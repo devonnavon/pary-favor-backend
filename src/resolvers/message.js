@@ -22,10 +22,10 @@ export default {
 			return await models.Message.destroy({ where: { id } });
 		},
 
-		// updateMessage: (parent, { id, text }, { models }) => {
-		// 	models.messages[id].text = text;
-		// 	return models.messages[id];
-		// },
+		updateMessage: async (parent, { id, text }, { models }) => {
+			let message = await models.Message.findByPk(id);
+			return await message.update({ text });
+		},
 	},
 
 	Message: {

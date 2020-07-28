@@ -12,8 +12,8 @@ const sequelize = new Sequelize(
 );
 
 const models = {
-	User: user(sequelize, Sequelize.DataTypes), //require('./user').default(sequelize, Sequelize), //sequelize.import('./user'),
-	Message: message(sequelize, Sequelize.DataTypes), //require('./message').default(sequelize, Sequelize), //sequelize.import('./message'),
+	User: user(sequelize, Sequelize.DataTypes),
+	Message: message(sequelize, Sequelize.DataTypes),
 };
 
 Object.keys(models).forEach((key) => {

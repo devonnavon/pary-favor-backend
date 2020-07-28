@@ -86,12 +86,32 @@ const createUsersWithMessages = async () => {
 			username: 'dev',
 			email: 'dev@noshi.world',
 			password: 'qqqqqqq',
+			role: 'ADMIN',
 			messages: [
 				{
 					text: 'sharks scare me',
 				},
 				{
 					text: 'but imma still shred',
+				},
+			],
+		},
+		{
+			include: [models.Message],
+		}
+	);
+
+	await models.User.create(
+		{
+			username: 'loser',
+			email: 'some@loser.whoihate',
+			password: 'qqqqqqq',
+			messages: [
+				{
+					text: 'delete me',
+				},
+				{
+					text: 'I dont want to be here',
 				},
 			],
 		},

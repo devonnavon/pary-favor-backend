@@ -4,8 +4,9 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "nodemon --exec babel-node src/index.js"
+		"start": "nodemon --exec babel-node src/index.js",
+		"test-server": "TEST_DATABASE=mytestdatabase npm start",
+		"test": "mocha --require @babel/register 'src/**/*.spec.js'"
 	},
 	"repository": {
 		"type": "git",
@@ -22,6 +23,10 @@
 		"@babel/core": "^7.10.5",
 		"@babel/node": "^7.10.5",
 		"@babel/preset-env": "^7.10.4",
+		"@babel/register": "^7.10.5",
+		"axios": "^0.19.2",
+		"chai": "^4.2.0",
+		"mocha": "^8.0.1",
 		"nodemon": "^2.0.4"
 	},
 	"dependencies": {
@@ -29,6 +34,7 @@
 		"apollo-server-express": "^2.16.0",
 		"bcrypt": "^5.0.0",
 		"cors": "^2.8.5",
+		"dataloader": "^2.0.0",
 		"dotenv": "^8.2.0",
 		"express": "^4.17.1",
 		"graphql": "^15.3.0",

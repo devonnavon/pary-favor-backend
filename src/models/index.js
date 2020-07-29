@@ -8,6 +8,7 @@ const sequelize = new Sequelize(
 	process.env.DATABASE_PASSWORD,
 	{
 		dialect: 'postgres',
+		operatorsAliases: false,
 	}
 );
 
@@ -23,5 +24,6 @@ Object.keys(models).forEach((key) => {
 });
 
 export { sequelize };
+export const Op = Sequelize.Op;
 
 export default models;

@@ -79,6 +79,7 @@ export default {
 
 	Message: {
 		user: async (message, args, { loaders }) => {
+			//console.log(message.userId);
 			return await loaders.user.load(message.userId);
 		},
 	},

@@ -27,7 +27,7 @@ describe('users', () => {
 				},
 			};
 
-			const result = await userApi.user({ id: '42' });
+			const result = await userApi.user({ id: '100' });
 
 			expect(result.data).to.eql(expectedResult);
 		});

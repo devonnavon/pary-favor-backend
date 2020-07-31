@@ -9,8 +9,9 @@ import http from 'http'; //for subscription setup
 import schema from './schema';
 import resolvers from './resolvers';
 import models, { sequelize } from './models';
+import seed from './models/seed';
 import loaders from './loaders';
-
+console.log(seed.createUsersWithMessages);
 const app = express();
 
 app.use(cors());
@@ -71,83 +72,15 @@ server.applyMiddleware({ app, path: '/graphql' });
 const httpServer = http.createServer(app);
 server.installSubscriptionHandlers(httpServer);
 
-// const eraseDatabaseOnSync = true;
-
-// sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
-
+const eraseDatabaseOnSync = true;
 const isTest = !!process.env.TEST_DATABASE;
 
-sequelize.sync({ force: isTest }).then(async () => {
-	if (isTest) {
-		// if (eraseDatabaseOnSync) {
-		createUsersWithMessages(new Date());
+sequelize.sync({ force: isTest || eraseDatabaseOnSync }).then(async () => {
+	if (isTest || eraseDatabaseOnSync) {
+		seed.createUsersWithMessages(new Date());
 	}
 
 	httpServer.listen(process.env.PORT, () =>
 		console.log(`Example app listening on port ${process.env.PORT}!`)
 	);
 });
-
-//DATABASE SEED FUNCITON (CAN REMOVE IN PROD)
-const createUsersWithMessages = async (date) => {
-	await models.User.create(
-		{
-			username: 'len',
-			email: 'len@noshi.globe',
-			password: 'qqqqqqq',
-			role: 'ADMIN',
-			messages: [
-				{
-					text: 'yo yo yo',
-					createdAt: date.setSeconds(date.getSeconds() + 1),
-				},
-			],
-		},
-		{
-			include: [models.Message],
-		}
-	);
-
-	await models.User.create(
-		{
-			username: 'dev',
-			email: 'dev@noshi.world',
-			password: 'qqqqqqq',
-			role: 'ADMIN',
-			messages: [
-				{
-					text: 'sharks scare me',
-					createdAt: date.setSeconds(date.getSeconds() + 1),
-				},
-				{
-					text: 'but imma still shred',
-					createdAt: date.setSeconds(date.getSeconds() + 1),
-				},
-			],
-		},
-		{
-			include: [models.Message],
-		}
-	);
-
-	await models.User.create(
-		{
-			username: 'loser',
-			email: 'some@loser.whoihate',
-			password: 'qqqqqqq',
-			messages: [
-				{
-					text: 'delete me',
-					createdAt: date.setSeconds(date.getSeconds() + 1),
-				},
-				{
-					text: 'I dont want to be here',
-					createdAt: date.setSeconds(date.getSeconds() + 1),
-				},
-			],
-		},
-		{
-			include: [models.Message],
-		}
-	);
-};

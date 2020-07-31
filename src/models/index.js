@@ -1,6 +1,7 @@
 import Sequelize, { DataTypes } from 'sequelize';
 import user from './user';
 import message from './message';
+import landingText from './landingText';
 
 const sequelize = new Sequelize(
 	process.env.TEST_DATABASE || process.env.DATABASE,
@@ -15,6 +16,7 @@ const sequelize = new Sequelize(
 const models = {
 	User: user(sequelize, DataTypes),
 	Message: message(sequelize, DataTypes),
+	LandingText: landingText(sequelize, DataTypes),
 };
 
 Object.keys(models).forEach((key) => {

@@ -11,7 +11,7 @@ import resolvers from './resolvers';
 import models, { sequelize } from './models';
 import seed from './models/seed';
 import loaders from './loaders';
-console.log(seed.createUsersWithMessages);
+
 const app = express();
 
 app.use(cors());
@@ -78,6 +78,7 @@ const isTest = !!process.env.TEST_DATABASE;
 sequelize.sync({ force: isTest || eraseDatabaseOnSync }).then(async () => {
 	if (isTest || eraseDatabaseOnSync) {
 		seed.createUsersWithMessages(new Date());
+		seed.createLandingPageContent();
 	}
 
 	httpServer.listen(process.env.PORT, () =>

@@ -13,6 +13,7 @@ const createToken = async (user, secret, expiresIn) => {
 
 export default {
 	Query: {
+		//you probably shouldn't be able to query users unless you're an admin
 		users: async (parent, args, { models }) => {
 			return await models.User.findAll();
 		},

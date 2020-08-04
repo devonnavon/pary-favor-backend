@@ -19,3 +19,13 @@ export const isMessageOwner = async (parent, { id }, { models, me }) => {
 
 	return skip;
 };
+
+export const isEventOwner = async (parent, { id }, { models, me }) => {
+	const event = await models.Event.findByPk(id, { raw: true });
+
+	if (event.userId !== me.id) {
+		throw new ForbiddenError('Not authenticated as owner.');
+	}
+
+	return skip;
+};

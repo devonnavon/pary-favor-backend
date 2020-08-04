@@ -47,9 +47,43 @@ const createUsersWithMessages = async (date) => {
 					createdAt: date.setSeconds(date.getSeconds() + 1),
 				},
 			],
+			events: [
+				{
+					title: 'my super sick concert',
+					description:
+						'its gonna be cool, we wont touch, no germs etc. gOOd vIBes onLY',
+					eventDate: date.setSeconds(date.getSeconds() + 1),
+					published: false,
+					password: 'password',
+				},
+				{
+					title: 'super serious meditation',
+					description:
+						"we're gonna mediate and grow. Its suppppppper serious. We'll be manifesting.",
+					eventDate: date.setSeconds(date.getSeconds() + 1),
+					published: true,
+					password: 'yes',
+				},
+				{
+					title: 'xxxporn',
+					description:
+						'people might do this on our site also. that would be funny, and probably quite lucrative',
+					eventDate: date.setSeconds(date.getSeconds() + 1),
+					published: false,
+					password: 'xxx',
+				},
+				{
+					title: 'plant care and you',
+					description:
+						'have you gotten a new plant? okay here is something for you',
+					eventDate: date.setSeconds(date.getSeconds() + 1),
+					published: false,
+					password: 'plant',
+				},
+			],
 		},
 		{
-			include: [models.Message],
+			include: [models.Message, models.Event],
 		}
 	);
 
@@ -69,9 +103,19 @@ const createUsersWithMessages = async (date) => {
 					createdAt: date.setSeconds(date.getSeconds() + 1),
 				},
 			],
+			events: [
+				{
+					title: 'the first party in years',
+					description:
+						'its gonna be cool, we wont touch, no germs etc. gOOd vIBes onLY',
+					eventDate: date.setSeconds(date.getSeconds() + 1),
+					published: false,
+					password: 'password',
+				},
+			],
 		},
 		{
-			include: [models.Message],
+			include: [models.Message, models.Event],
 		}
 	);
 
@@ -90,9 +134,19 @@ const createUsersWithMessages = async (date) => {
 					createdAt: date.setSeconds(date.getSeconds() + 1),
 				},
 			],
+			events: [
+				{
+					title: 'lets all just get rona',
+					description:
+						'why? for the a e s t h e t i c. its a culture, need to get involved.',
+					eventDate: date.setSeconds(date.getSeconds() + 1),
+					published: false,
+					password: 'ronanation',
+				},
+			],
 		},
 		{
-			include: [models.Message],
+			include: [models.Message, models.Event],
 		}
 	);
 };

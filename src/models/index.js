@@ -1,6 +1,8 @@
 import Sequelize, { DataTypes } from 'sequelize';
 import user from './user';
 import message from './message';
+import event from './event';
+
 import landingText from './landingText';
 
 const sequelize = new Sequelize(
@@ -16,6 +18,7 @@ const sequelize = new Sequelize(
 const models = {
 	User: user(sequelize, DataTypes),
 	Message: message(sequelize, DataTypes),
+	Event: event(sequelize, DataTypes),
 	LandingText: landingText(sequelize, DataTypes),
 };
 

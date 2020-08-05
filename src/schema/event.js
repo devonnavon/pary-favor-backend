@@ -17,7 +17,7 @@ export default gql`
 		deleteEvent(id: ID!): Boolean!
 		updateEvent(
 			id: ID!
-			title: String!
+			title: String
 			description: String
 			eventDate: Date
 			published: Boolean

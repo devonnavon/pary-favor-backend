@@ -62,13 +62,13 @@ export default {
 			isEventOwner,
 			async (
 				parent,
-				{ id, title, desciption, eventDate, published, password },
+				{ id, title, description, eventDate, published, password },
 				{ models }
 			) => {
 				let event = await models.Event.findByPk(id);
 				return await event.update({
 					title,
-					desciption,
+					description,
 					eventDate,
 					published,
 					password,

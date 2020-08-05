@@ -17,12 +17,12 @@ const event = (sequelize, DataTypes) => {
 		eventDate: {
 			type: DataTypes.DATE,
 			allowNull: true,
-			defaultValue: sequelize.NOW,
+			defaultValue: new Date(),
 		},
 		published: {
 			type: DataTypes.BOOLEAN,
-			allowNull: false,
-			// defaultValue: false,
+			allowNull: true,
+			defaultValue: false,
 		},
 		password: {
 			type: DataTypes.STRING,

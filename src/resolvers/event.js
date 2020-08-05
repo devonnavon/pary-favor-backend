@@ -21,6 +21,7 @@ export default {
 		),
 
 		event: combineResolvers(
+			isAuthenticated,
 			isEventOwner,
 			async (parent, { id }, { models }) => {
 				return await models.Event.findByPk(id);

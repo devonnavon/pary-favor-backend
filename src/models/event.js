@@ -16,7 +16,7 @@ const event = (sequelize, DataTypes) => {
 		},
 		eventDate: {
 			type: DataTypes.DATE,
-			allowNull: false,
+			allowNull: true,
 			defaultValue: sequelize.NOW,
 		},
 		published: {

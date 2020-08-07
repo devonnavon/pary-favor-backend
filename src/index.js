@@ -81,8 +81,8 @@ const isTest = !!process.env.TEST_DATABASE;
 sequelize.sync({ force: isTest || eraseDatabaseOnSync }).then(async () => {
 	if (isTest || eraseDatabaseOnSync) {
 		seed.createUsersWithMessages(new Date());
-		seed.createLandingPageContent();
 	}
+	seed.createLandingPageContent();
 
 	httpServer.listen(port, () =>
 		console.log(`Example app listening on port ${port}!`)

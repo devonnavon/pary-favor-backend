@@ -72,7 +72,8 @@ server.applyMiddleware({ app, path: '/api' });
 const httpServer = http.createServer(app);
 server.installSubscriptionHandlers(httpServer);
 
-const eraseDatabaseOnSync = true;
+const port = process.env.PORT || 8000;
+const eraseDatabaseOnSync = !process.env.DATABASE_URL; //only erase in dev, not in prd
 const isTest = !!process.env.TEST_DATABASE;
 
 sequelize.sync({ force: isTest || eraseDatabaseOnSync }).then(async () => {
@@ -81,7 +82,7 @@ sequelize.sync({ force: isTest || eraseDatabaseOnSync }).then(async () => {
 		seed.createLandingPageContent();
 	}
 
-	httpServer.listen(process.env.PORT, () =>
-		console.log(`Example app listening on port ${process.env.PORT}!`)
+	httpServer.listen(port, () =>
+		console.log(`Example app listening on port ${port}!`)
 	);
 });

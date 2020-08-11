@@ -17,7 +17,7 @@ if (process.env.DATABASE_URL) {
 		process.env.DATABASE_PASSWORD,
 		{
 			dialect: 'postgres',
-			operatorsAliases: false,
+			operatorsAliases: 0,
 		}
 	);
 }

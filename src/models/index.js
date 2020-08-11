@@ -2,6 +2,8 @@ import Sequelize, { DataTypes } from 'sequelize';
 import user from './user';
 import message from './message';
 import event from './event';
+import eventCard from './eventCard';
+import cardMedia from './cardMedia';
 
 import landingText from './landingText';
 
@@ -26,6 +28,8 @@ const models = {
 	User: user(sequelize, DataTypes),
 	Message: message(sequelize, DataTypes),
 	Event: event(sequelize, DataTypes),
+	EventCard: eventCard(sequelize, DataTypes),
+	CardMedia: cardMedia(sequelize, DataTypes),
 	LandingText: landingText(sequelize, DataTypes),
 };
 

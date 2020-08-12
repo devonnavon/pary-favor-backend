@@ -34,6 +34,10 @@ const event = (sequelize, DataTypes) => {
 		Event.belongsTo(models.User);
 	};
 
+	Event.associate = (models) => {
+		Event.hasMany(models.EventCard, { onDelete: 'CASCADE' });
+	};
+
 	return Event;
 };
 

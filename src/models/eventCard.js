@@ -20,6 +20,10 @@ const eventCard = (sequelize, DataTypes) => {
 		EventCard.belongsTo(models.Event);
 	};
 
+	EventCard.associate = (models) => {
+		EventCard.hasMany(models.CardMedia, { onDelete: 'CASCADE' });
+	};
+
 	return EventCard;
 };
 

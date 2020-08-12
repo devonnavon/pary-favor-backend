@@ -9,22 +9,22 @@ const cardMedia = (sequelize, DataTypes) => {
 					msg: 'Empty size',
 				},
 			},
-			options: {
-				type: DataTypes.JSON,
-				allowNull: true,
-			},
-			url: {
-				type: DataTypes.INTEGER,
-				allowNull: true,
-			},
-			text: {
-				type: DataTypes.TEXT,
-				allowNull: true,
-			},
-			sortOrder: {
-				type: DataTypes.INTEGER,
-				allowNull: false,
-			},
+		},
+		options: {
+			type: DataTypes.JSON,
+			allowNull: true,
+		},
+		url: {
+			type: DataTypes.INTEGER,
+			allowNull: true,
+		},
+		text: {
+			type: DataTypes.TEXT,
+			allowNull: true,
+		},
+		sortOrder: {
+			type: DataTypes.INTEGER,
+			allowNull: false,
 		},
 	});
 

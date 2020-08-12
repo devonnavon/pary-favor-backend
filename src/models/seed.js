@@ -1,4 +1,5 @@
 import models, { sequelize } from '../models';
+import { text } from 'express';
 
 const createLandingPageContent = async () => {
 	await models.LandingText.create({
@@ -148,6 +149,98 @@ const createUsersWithMessages = async (date) => {
 		{
 			include: [models.Message, models.Event],
 		}
+	);
+
+	await models.Event.create(
+		{
+			title: 'yo yo yo yo ',
+			description: 'i am annoyed',
+			eventDate: date.setSeconds(date.getSeconds() + 1),
+			published: false,
+			password: 'ronanation',
+			userId: 3,
+			eventCards: [{ size: 'full', sortOrder: 1 }],
+		},
+		{
+			include: [models.EventCard],
+		}
+	);
+
+	await models.EventCard.create(
+		{
+			size: 'full',
+			sortOrder: 1,
+			eventId: 1,
+			CardMedia: [
+				{ type: 'text', options: {}, sortOrder: 1, text: 'hey man yo' },
+				{ type: 'image', options: {}, sortOrder: 2, text: 'please!' },
+			],
+		},
+		{
+			include: [models.CardMedia],
+		}
+	);
+
+	await models.EventCard.create(
+		{
+			size: 'half',
+			sortOrder: 2,
+			eventId: 1,
+			cardMedia: [
+				{ type: 'text', options: {}, sortOrder: 1, text: 'hey man yo' },
+				{ type: 'image', options: {}, sortOrder: 2, text: 'please!' },
+			],
+		},
+		{ include: [models.CardMedia] }
+	);
+	await models.EventCard.create(
+		{
+			size: 'half',
+			sortOrder: 3,
+			eventId: 1,
+			cardMedia: [
+				{ type: 'text', options: {}, sortOrder: 1, text: 'hey man yo' },
+				{ type: 'image', options: {}, sortOrder: 2, text: 'please!' },
+			],
+		},
+		{ include: [models.CardMedia] }
+	);
+
+	await models.EventCard.create(
+		{
+			size: 'full',
+			sortOrder: 1,
+			eventId: 5,
+			cardMedia: [
+				{ type: 'text', options: {}, sortOrder: 1, text: 'hey man yo' },
+				{ type: 'image', options: {}, sortOrder: 2, text: 'please!' },
+			],
+		},
+		{ include: [models.CardMedia] }
+	);
+	await models.EventCard.create(
+		{
+			size: 'half',
+			sortOrder: 2,
+			eventId: 5,
+			cardMedia: [
+				{ type: 'text', options: {}, sortOrder: 1, text: 'hey man yo' },
+				{ type: 'image', options: {}, sortOrder: 2, text: 'please!' },
+			],
+		},
+		{ include: [models.CardMedia] }
+	);
+	await models.EventCard.create(
+		{
+			size: 'half',
+			sortOrder: 3,
+			eventId: 5,
+			cardMedia: [
+				{ type: 'text', options: {}, sortOrder: 1, text: 'hey man yo' },
+				{ type: 'image', options: {}, sortOrder: 2, text: 'please!' },
+			],
+		},
+		{ include: [models.CardMedia] }
 	);
 };
 

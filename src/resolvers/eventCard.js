@@ -20,7 +20,7 @@ export default {
 			// isEventCardOwner,
 			async (parent, { type, sortOrder }, { me, models }) => {
 				return await models.EventCard.create({
-					type,
+					size,
 					sortOrder,
 				});
 			}
@@ -41,7 +41,7 @@ export default {
 			async (parent, { id, type, sortOrder }, { models }) => {
 				let eventCard = await models.EventCard.findByPk(id);
 				return await eventCard.update({
-					type,
+					size,
 					sortOrder,
 				});
 			}

@@ -23,5 +23,6 @@ export default gql`
 		email: String!
 		role: String
 		messages: [Message!]
+		events: [Event!]
 	}
 `;

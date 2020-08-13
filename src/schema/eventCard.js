@@ -6,14 +6,14 @@ export default gql`
 	}
 
 	extend type Mutation {
-		createEventCard(eventId: ID!, type: String!, sortOrder: Int!): EventCard!
+		createEventCard(eventId: ID!, size: String!, sortOrder: Int!): EventCard!
 		deleteEventCard(id: ID!): Boolean!
-		updateEventCard(id: ID!, type: String, sortOrder: Int): EventCard!
+		updateEventCard(id: ID!, size: String, sortOrder: Int): EventCard!
 	}
 
 	type EventCard {
 		id: ID!
-		type: String!
-		sordOrder: Int!
+		size: String!
+		sortOrder: Int!
 	}
 `;

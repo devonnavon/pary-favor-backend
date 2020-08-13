@@ -33,5 +33,6 @@ export default gql`
 		published: Boolean
 		password: String
 		user: User!
+		eventCards: [EventCard]
 	}
 `;

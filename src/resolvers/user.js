@@ -66,13 +66,13 @@ export default {
 		),
 	},
 	User: {
-		// messages: async (user, args, { models }) => {
-		// 	return await models.Message.findAll({
-		// 		where: {
-		// 			userId: user.id,
-		// 		},
-		// 	});
-		// },
+		messages: async (user, args, { models }) => {
+			return await models.Message.findAll({
+				where: {
+					userId: user.id,
+				},
+			});
+		},
 		events: async (user, args, { models }) => {
 			return await models.Event.findAll({
 				where: {

@@ -81,5 +81,12 @@ export default {
 		user: async (event, args, { loaders }) => {
 			return await loaders.user.load(event.userId);
 		},
+		eventCards: async (event, args, { models }) => {
+			return await models.EventCard.findAll({
+				where: {
+					eventId: event.id,
+				},
+			});
+		},
 	},
 };

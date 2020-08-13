@@ -1,25 +1,16 @@
 import Sequelize from 'sequelize';
 import { combineResolvers } from 'graphql-resolvers';
 
-import { isAuthenticated, isEventOwner } from './authorization';
+import { isAuthenticated } from './authorization';
 
 export default {
-	Query: {
-		eventCard: combineResolvers(
-			isAuthenticated,
-			// isEventCardOwner,
-			async (parent, { id }, { models }) => {
-				return await models.EventCard.findByPk(id);
-			}
-		),
-	},
-
 	Mutation: {
 		createEventCard: combineResolvers(
 			isAuthenticated,
 			// isEventCardOwner,
-			async (parent, { type, sortOrder }, { me, models }) => {
+			async (parent, { eventId, size, sortOrder }, { models }) => {
 				return await models.EventCard.create({
+					eventId,
 					size,
 					sortOrder,
 				});
@@ -34,11 +25,10 @@ export default {
 			}
 		),
 
-		//how to we deal with optional arguments? what if we only want to update one thing?
-		updateEvent: combineResolvers(
+		updateEventCard: combineResolvers(
 			isAuthenticated,
 			// isEventCardOwner,
-			async (parent, { id, type, sortOrder }, { models }) => {
+			async (parent, { id, size, sortOrder }, { models }) => {
 				let eventCard = await models.EventCard.findByPk(id);
 				return await eventCard.update({
 					size,
@@ -48,9 +38,13 @@ export default {
 		),
 	},
 
-	// Event: {
-	// 	user: async (event, args, { loaders }) => {
-	// 		return await loaders.user.load(event.userId);
-	// 	},
-	// },
+	EventCard: {
+		cardMedia: async (eventCard, args, { models }) => {
+			return await models.CardMedia.findAll({
+				where: {
+					eventCardId: eventCard.id,
+				},
+			});
+		},
+	},
 };

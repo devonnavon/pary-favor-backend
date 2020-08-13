@@ -4,6 +4,7 @@ import userSchema from './user';
 import messageSchema from './message';
 import eventSchema from './event';
 import eventCardSchema from './eventCard';
+import cardMediaSchema from './cardMedia';
 
 import landingTextSchema from './landingText';
 
@@ -30,4 +31,5 @@ export default [
 	eventSchema,
 	eventCardSchema,
 	landingTextSchema,
+	cardMediaSchema,
 ];

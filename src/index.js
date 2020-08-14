@@ -59,6 +59,7 @@ const server = new ApolloServer({
 			const me = await getMe(req);
 			return {
 				models,
+				sequelize,
 				me,
 				secret: process.env.SECRET,
 				loaders: {

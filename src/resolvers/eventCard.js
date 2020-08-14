@@ -1,4 +1,4 @@
-import Sequelize from 'sequelize';
+// import Sequelize from 'sequelize';
 import { combineResolvers } from 'graphql-resolvers';
 
 import { isAuthenticated } from './authorization';
@@ -20,7 +20,17 @@ export default {
 		deleteEventCard: combineResolvers(
 			isAuthenticated,
 			// isEventCardOwner,
-			async (parent, { id }, { models }) => {
+			async (parent, { id }, { models, sequelize }) => {
+				let card = await models.EventCard.findByPk(id);
+				if (!card) return 0;
+				let q = await sequelize.query(
+					`
+					update "eventCards"
+					set "sortOrder" = "sortOrder" - 1
+					where "eventId"=${card.dataValues.eventId}
+					and "sortOrder" > ${card.dataValues.sortOrder}
+					`
+				);
 				return await models.EventCard.destroy({ where: { id } });
 			}
 		),

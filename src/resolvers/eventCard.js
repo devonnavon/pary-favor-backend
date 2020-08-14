@@ -23,7 +23,7 @@ export default {
 			async (parent, { id }, { models, sequelize }) => {
 				let card = await models.EventCard.findByPk(id);
 				if (!card) return 0;
-				let q = await sequelize.query(
+				await sequelize.query(
 					`
 					update "eventCards"
 					set "sortOrder" = "sortOrder" - 1
@@ -38,12 +38,33 @@ export default {
 		updateEventCard: combineResolvers(
 			isAuthenticated,
 			// isEventCardOwner,
-			async (parent, { id, size, sortOrder }, { models }) => {
+			async (parent, { id, size, sortOrder }, { models, sequelize }) => {
 				let eventCard = await models.EventCard.findByPk(id);
-				return await eventCard.update({
-					size,
-					sortOrder,
-				});
+				if (!sortOrder) {
+					return await eventCard.update({ size });
+				}
+				if (sortOrder > eventCard.dataValues.sortOrder) {
+					console.log('top to bottom');
+					let q = await sequelize.query(
+						`
+						update "eventCards"
+						set "sortOrder" = "sortOrder" - 1
+						where "eventId"=${eventCard.dataValues.eventId}
+						and "sortOrder" <= ${sortOrder}
+						`
+					);
+					console.log(q);
+				} else if (sortOrder < eventCard.dataValues.sortOrder) {
+					await sequelize.query(
+						`
+						update "eventCards"
+						set "sortOrder" = "sortOrder" + 1
+						where "eventId"=${eventCard.dataValues.eventId}
+						and "sortOrder" >= ${sortOrder}
+						`
+					);
+				}
+				return await eventCard.update({ size, sortOrder });
 			}
 		),
 	},

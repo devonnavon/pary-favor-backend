@@ -28,7 +28,6 @@ export default {
 			// isCardMediaOwner,
 			async (parent, { id }, { models, sequelize }) => {
 				let card = await models.CardMedia.findByPk(id);
-				console.log(card);
 				if (!card) return 0;
 				await sequelize.query(
 					`
@@ -71,7 +70,6 @@ export default {
 						`
 					);
 				} else if (sortOrder < cardMedia.dataValues.sortOrder) {
-					console.log('yoyoyo');
 					await sequelize.query(
 						`
 						update "cardMedia"

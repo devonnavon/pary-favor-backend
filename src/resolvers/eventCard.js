@@ -44,13 +44,13 @@ export default {
 					return await eventCard.update({ size });
 				}
 				if (sortOrder > eventCard.dataValues.sortOrder) {
-					console.log('top to bottom');
 					let q = await sequelize.query(
 						`
 						update "eventCards"
 						set "sortOrder" = "sortOrder" - 1
 						where "eventId"=${eventCard.dataValues.eventId}
 						and "sortOrder" <= ${sortOrder}
+						and "sortOrder" > ${eventCard.dataValues.sortOrder}
 						`
 					);
 				} else if (sortOrder < eventCard.dataValues.sortOrder) {
@@ -60,6 +60,7 @@ export default {
 						set "sortOrder" = "sortOrder" + 1
 						where "eventId"=${eventCard.dataValues.eventId}
 						and "sortOrder" >= ${sortOrder}
+						and "sortOrder" < ${eventCard.dataValues.sortOrder}
 						`
 					);
 				}

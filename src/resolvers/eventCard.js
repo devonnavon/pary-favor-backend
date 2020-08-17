@@ -53,7 +53,6 @@ export default {
 						and "sortOrder" <= ${sortOrder}
 						`
 					);
-					console.log(q);
 				} else if (sortOrder < eventCard.dataValues.sortOrder) {
 					await sequelize.query(
 						`

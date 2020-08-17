@@ -17,5 +17,6 @@ export default [
 	messageResolvers,
 	eventResolvers,
 	eventCardResolvers,
+	cardMediaResolvers,
 	landingTextResolvers,
 ];

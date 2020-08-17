@@ -1,4 +1,3 @@
-import Sequelize from 'sequelize';
 import { combineResolvers } from 'graphql-resolvers';
 
 import { isAuthenticated } from './authorization';
@@ -32,17 +31,17 @@ export default {
 			}
 		),
 
-		updateEventCard: combineResolvers(
-			isAuthenticated,
+		updateCardMedia: combineResolvers(
+			// isAuthenticated,
 			// isCardMediaOwner,
 			async (
 				parent,
 				{ id, type, options, url, text, sortOrder },
 				{ models }
 			) => {
-				let eventCard = await models.CardMedia.findByPk(id);
-				return await eventCard.update({
-					eventCardId,
+				let cardMedia = await models.CardMedia.findByPk(id);
+				return await cardMedia.update({
+					id,
 					type,
 					options,
 					url,

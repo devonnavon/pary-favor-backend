@@ -13,11 +13,11 @@ export default gql`
 		deleteCardMedia(id: ID!): Boolean!
 		updateCardMedia(
 			id: ID!
-			type: String!
+			type: String
 			options: String
 			url: String
 			text: String
-			sortOrder: Int!
+			sortOrder: Int
 		): CardMedia!
 	}
 

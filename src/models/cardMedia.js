@@ -6,7 +6,7 @@ const cardMedia = (sequelize, DataTypes) => {
 			validate: {
 				notEmpty: {
 					args: true,
-					msg: 'Empty size',
+					msg: 'Empty type',
 				},
 			},
 		},

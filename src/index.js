@@ -5,6 +5,7 @@ import jwt from 'jsonwebtoken';
 import DataLoader from 'dataloader';
 import { ApolloServer, AuthenticationError } from 'apollo-server-express';
 import http from 'http'; //for subscription setup
+import AWS from 'aws-sdk';
 
 import schema from './schema';
 import resolvers from './resolvers';
@@ -15,6 +16,16 @@ import loaders from './loaders';
 const app = express();
 
 app.use(cors());
+
+const s3 = new AWS.S3({ apiVersion: '2006-03-01' });
+
+s3.listBuckets(function (err, data) {
+	if (err) {
+		console.log('Error', err);
+	} else {
+		console.log('Success', data.Buckets);
+	}
+});
 
 const getMe = async (req) => {
 	const token = req.headers['x-token'];

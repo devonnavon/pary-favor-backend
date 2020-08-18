@@ -8,6 +8,8 @@ import cardMediaSchema from './cardMedia';
 
 import landingTextSchema from './landingText';
 
+import fileSchema from './file';
+
 const linkSchema = gql`
 	scalar Date
 
@@ -30,6 +32,7 @@ export default [
 	messageSchema,
 	eventSchema,
 	eventCardSchema,
-	landingTextSchema,
 	cardMediaSchema,
+	landingTextSchema,
+	fileSchema,
 ];

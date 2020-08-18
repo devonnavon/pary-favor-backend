@@ -7,6 +7,8 @@ import cardMediaResolvers from './cardMedia';
 
 import landingTextResolvers from './landingText';
 
+import fileResolvers from './file';
+
 const customScalarResolver = {
 	Date: GraphQLDateTime,
 };
@@ -19,4 +21,5 @@ export default [
 	eventCardResolvers,
 	cardMediaResolvers,
 	landingTextResolvers,
+	fileResolvers,
 ];

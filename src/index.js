@@ -19,14 +19,6 @@ app.use(cors());
 
 const s3 = new AWS.S3({ apiVersion: '2006-03-01' });
 
-s3.listBuckets(function (err, data) {
-	if (err) {
-		console.log('Error', err);
-	} else {
-		console.log('Success', data.Buckets);
-	}
-});
-
 const getMe = async (req) => {
 	const token = req.headers['x-token'];
 
@@ -72,6 +64,7 @@ const server = new ApolloServer({
 				models,
 				sequelize,
 				me,
+				s3,
 				secret: process.env.SECRET,
 				loaders: {
 					user: new DataLoader((keys) => loaders.user.batchUsers(keys, models)),

@@ -2,11 +2,11 @@ import { gql } from 'apollo-server-express';
 
 export default gql`
 	extend type Query {
-		getFile: Boolean
+		getFile(file: String!): Boolean
 	}
 
 	extend type Mutation {
-		singleUploadStream(file: Upload!): File!
+		upload(file: Upload!): File!
 	}
 
 	type File {

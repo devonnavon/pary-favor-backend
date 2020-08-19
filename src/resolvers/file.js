@@ -1,24 +1,37 @@
-import { combindResolvers } from 'graphql-resolvers';
+import { combineResolvers } from 'graphql-resolvers';
+import { isAuthenticated } from './authorization';
 
 export default {
+	Query: {
+		getFile: combineResolvers(
+			isAuthenticated,
+			async (parent, { file }, { s3 }) => {
+				const params = {
+					Bucket: 'sorekara',
+					Key: file,
+				};
+				return await s3.getObject(params);
+			}
+		),
+	},
 	Mutation: {
-		singleUploadStream: async (parent, args, { s3 }) => {
-			const file = await args.file;
-			const { createReadStream, filename, mimetype } = file;
-			const fileStream = createReadStream();
+		upload: combineResolvers(
+			isAuthenticated,
+			async (parent, { file }, { s3 }) => {
+				const { createReadStream, filename, mimetype } = await file;
+				const fileStream = createReadStream();
 
-			//Here stream it to S3
-			// Enter your bucket name here next to "Bucket: "
-			const uploadParams = {
-				Bucket: 'apollo-file-upload-test',
-				Key: filename,
-				Body: fileStream,
-			};
-			const result = await s3.upload(uploadParams).promise();
+				const params = {
+					Bucket: 'sorekara',
+					Key: filename,
+					Body: fileStream,
+				};
+				const result = await s3.upload(params); //.promise();
 
-			console.log(result);
+				console.log(result);
 
-			return file;
-		},
+				return file;
+			}
+		),
 	},
 };

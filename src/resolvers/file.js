@@ -15,6 +15,27 @@ export default {
 		),
 	},
 	Mutation: {
+		signS3: combineResolvers(
+			isAuthenticated,
+			async (parent, { filename, filetype }, { s3 }) => {
+				const s3bucket = 'sorekara';
+				const params = {
+					Bucket: s3bucket,
+					Key: filename,
+					Expires: 60,
+					ContentType: filetype,
+					ACL: 'public-read',
+				};
+				const signedRequest = await s3.getSignedUrl('putObject', params);
+				const url = `https://${s3bucket}.s3.amazonaws.com/${filename}`;
+
+				return {
+					signedRequest,
+					url,
+				};
+			}
+		),
+
 		upload: combineResolvers(
 			isAuthenticated,
 			async (parent, { file }, { s3 }) => {

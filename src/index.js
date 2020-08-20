@@ -17,7 +17,7 @@ const app = express();
 
 app.use(cors());
 
-const s3 = new AWS.S3({ apiVersion: '2006-03-01' });
+const s3 = new AWS.S3({ apiVersion: '2006-03-01', signatureVersion: 'v4' });
 
 const getMe = async (req) => {
 	const token = req.headers['x-token'];

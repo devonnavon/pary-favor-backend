@@ -18,7 +18,7 @@ export default {
 		signS3: combineResolvers(
 			isAuthenticated,
 			async (parent, { filename, filetype }, { s3 }) => {
-				const s3bucket = 'sorekara';
+				const s3bucket = process.env.S3_BUCKET;
 				const params = {
 					Bucket: s3bucket,
 					Key: filename,

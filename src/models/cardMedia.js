@@ -15,7 +15,7 @@ const cardMedia = (sequelize, DataTypes) => {
 			allowNull: true,
 		},
 		url: {
-			type: DataTypes.INTEGER,
+			type: DataTypes.STRING,
 			allowNull: true,
 		},
 		text: {

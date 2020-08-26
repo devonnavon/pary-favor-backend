@@ -58,9 +58,8 @@ export default {
 						url,
 						text,
 					});
-				}
-				if (sortOrder > cardMedia.dataValues.sortOrder) {
-					let q = await sequelize.query(
+				} else if (sortOrder > cardMedia.dataValues.sortOrder) {
+					await sequelize.query(
 						`
 						update "cardMedia"
 						set "sortOrder" = "sortOrder" - 1

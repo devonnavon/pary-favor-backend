@@ -3,7 +3,7 @@ import user from './user';
 import message from './message';
 import event from './event';
 import eventCard from './eventCard';
-import cardMedia from './cardMedia';
+import cardItem from './cardItem';
 
 import landingText from './landingText';
 
@@ -29,7 +29,7 @@ const models = {
 	Message: message(sequelize, DataTypes),
 	Event: event(sequelize, DataTypes),
 	EventCard: eventCard(sequelize, DataTypes),
-	CardMedia: cardMedia(sequelize, DataTypes),
+	CardItem: cardItem(sequelize, DataTypes),
 	LandingText: landingText(sequelize, DataTypes),
 };
 

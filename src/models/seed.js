@@ -171,13 +171,13 @@ const createUsersWithMessages = async (date) => {
 			size: 'full',
 			sortOrder: 1,
 			eventId: 1,
-			CardMedia: [
+			CardItem: [
 				{ type: 'text', options: {}, sortOrder: 1, text: 'hey man yo' },
 				{ type: 'image', options: {}, sortOrder: 2, text: 'please!' },
 			],
 		},
 		{
-			include: [models.CardMedia],
+			include: [models.CardItem],
 		}
 	);
 
@@ -186,24 +186,24 @@ const createUsersWithMessages = async (date) => {
 			size: 'half',
 			sortOrder: 2,
 			eventId: 1,
-			cardMedia: [
+			cardItem: [
 				{ type: 'text', options: {}, sortOrder: 1, text: 'hey man yo' },
 				{ type: 'image', options: {}, sortOrder: 2, text: 'please!' },
 			],
 		},
-		{ include: [models.CardMedia] }
+		{ include: [models.CardItem] }
 	);
 	await models.EventCard.create(
 		{
 			size: 'half',
 			sortOrder: 3,
 			eventId: 1,
-			cardMedia: [
+			cardItem: [
 				{ type: 'text', options: {}, sortOrder: 1, text: 'hey man yo' },
 				{ type: 'image', options: {}, sortOrder: 2, text: 'please!' },
 			],
 		},
-		{ include: [models.CardMedia] }
+		{ include: [models.CardItem] }
 	);
 
 	await models.EventCard.create(
@@ -211,36 +211,36 @@ const createUsersWithMessages = async (date) => {
 			size: 'full',
 			sortOrder: 1,
 			eventId: 5,
-			cardMedia: [
+			cardItem: [
 				{ type: 'text', options: {}, sortOrder: 1, text: 'hey man yo' },
 				{ type: 'image', options: {}, sortOrder: 2, text: 'please!' },
 			],
 		},
-		{ include: [models.CardMedia] }
+		{ include: [models.CardItem] }
 	);
 	await models.EventCard.create(
 		{
 			size: 'half',
 			sortOrder: 2,
 			eventId: 5,
-			cardMedia: [
+			cardItem: [
 				{ type: 'text', options: {}, sortOrder: 1, text: 'hey man yo' },
 				{ type: 'image', options: {}, sortOrder: 2, text: 'please!' },
 			],
 		},
-		{ include: [models.CardMedia] }
+		{ include: [models.CardItem] }
 	);
 	await models.EventCard.create(
 		{
 			size: 'half',
 			sortOrder: 3,
 			eventId: 5,
-			cardMedia: [
+			cardItem: [
 				{ type: 'text', options: {}, sortOrder: 1, text: 'hey man yo' },
 				{ type: 'image', options: {}, sortOrder: 2, text: 'please!' },
 			],
 		},
-		{ include: [models.CardMedia] }
+		{ include: [models.CardItem] }
 	);
 };
 

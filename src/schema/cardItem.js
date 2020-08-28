@@ -2,26 +2,26 @@ import { gql } from 'apollo-server-express';
 
 export default gql`
 	extend type Mutation {
-		createCardMedia(
+		createCardItem(
 			eventCardId: ID!
 			type: String!
 			options: String
 			url: String
 			text: String
 			sortOrder: Int!
-		): CardMedia!
-		deleteCardMedia(id: ID!): Boolean!
-		updateCardMedia(
+		): CardItem!
+		deleteCardItem(id: ID!): Boolean!
+		updateCardItem(
 			id: ID!
 			type: String
 			options: String
 			url: String
 			text: String
 			sortOrder: Int
-		): CardMedia!
+		): CardItem!
 	}
 
-	type CardMedia {
+	type CardItem {
 		id: ID!
 		type: String!
 		options: String

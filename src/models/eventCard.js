@@ -21,7 +21,7 @@ const eventCard = (sequelize, DataTypes) => {
 	};
 
 	EventCard.associate = (models) => {
-		EventCard.hasMany(models.CardMedia, { onDelete: 'CASCADE' });
+		EventCard.hasMany(models.CardItem, { onDelete: 'CASCADE' });
 	};
 
 	return EventCard;

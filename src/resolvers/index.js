@@ -3,7 +3,7 @@ import userResolvers from './user';
 import messageResolvers from './message';
 import eventResolvers from './event';
 import eventCardResolvers from './eventCard';
-import cardMediaResolvers from './cardMedia';
+import cardItemResolvers from './cardItem';
 
 import landingTextResolvers from './landingText';
 
@@ -19,7 +19,7 @@ export default [
 	messageResolvers,
 	eventResolvers,
 	eventCardResolvers,
-	cardMediaResolvers,
+	cardItemResolvers,
 	landingTextResolvers,
 	fileResolvers,
 ];

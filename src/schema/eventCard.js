@@ -11,6 +11,6 @@ export default gql`
 		id: ID!
 		size: String!
 		sortOrder: Int!
-		cardMedia: [CardMedia]
+		cardItems: [CardItem]
 	}
 `;

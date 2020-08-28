@@ -4,15 +4,15 @@ import { isAuthenticated } from './authorization';
 
 export default {
 	Mutation: {
-		createCardMedia: combineResolvers(
+		createCardItem: combineResolvers(
 			isAuthenticated,
-			// isCardMediaOwner,
+			// isCardItemOwner,
 			async (
 				parent,
 				{ eventCardId, type, options, url, text, sortOrder },
 				{ models }
 			) => {
-				return await models.CardMedia.create({
+				return await models.CardItem.create({
 					eventCardId,
 					type,
 					options,
@@ -23,63 +23,63 @@ export default {
 			}
 		),
 
-		deleteCardMedia: combineResolvers(
+		deleteCardItem: combineResolvers(
 			isAuthenticated,
-			// isCardMediaOwner,
+			// isCardItemOwner,
 			async (parent, { id }, { models, sequelize }) => {
-				let card = await models.CardMedia.findByPk(id);
+				let card = await models.CardItem.findByPk(id);
 				if (!card) return 0;
 				await sequelize.query(
 					`
-					update "cardMedia"
+					update "cardItem"
 					set "sortOrder" = "sortOrder" - 1
 					where "eventCardId"=${card.dataValues.eventCardId}
 					and "sortOrder" > ${card.dataValues.sortOrder}
 					`
 				);
-				return await models.CardMedia.destroy({ where: { id } });
+				return await models.CardItem.destroy({ where: { id } });
 			}
 		),
 
-		updateCardMedia: combineResolvers(
+		updateCardItem: combineResolvers(
 			isAuthenticated,
-			// isCardMediaOwner,
+			// isCardItemOwner,
 			async (
 				parent,
 				{ id, type, options, url, text, sortOrder },
 				{ models, sequelize }
 			) => {
-				let cardMedia = await models.CardMedia.findByPk(id);
+				let cardItem = await models.CardItem.findByPk(id);
 				if (!sortOrder) {
-					return await cardMedia.update({
+					return await cardItem.update({
 						id,
 						type,
 						options,
 						url,
 						text,
 					});
-				} else if (sortOrder > cardMedia.dataValues.sortOrder) {
+				} else if (sortOrder > cardItem.dataValues.sortOrder) {
 					await sequelize.query(
 						`
-						update "cardMedia"
+						update "cardItem"
 						set "sortOrder" = "sortOrder" - 1
-						where "eventCardId"=${cardMedia.dataValues.eventCardId}
+						where "eventCardId"=${cardItem.dataValues.eventCardId}
 						and "sortOrder" <= ${sortOrder}
-						and "sortOrder" > ${cardMedia.dataValues.sortOrder}
+						and "sortOrder" > ${cardItem.dataValues.sortOrder}
 						`
 					);
-				} else if (sortOrder < cardMedia.dataValues.sortOrder) {
+				} else if (sortOrder < cardItem.dataValues.sortOrder) {
 					await sequelize.query(
 						`
-						update "cardMedia"
+						update "cardItem"
 						set "sortOrder" = "sortOrder" + 1
-						where "eventCardId"=${cardMedia.dataValues.eventCardId}
+						where "eventCardId"=${cardItem.dataValues.eventCardId}
 						and "sortOrder" >= ${sortOrder}
-						and "sortOrder" < ${cardMedia.dataValues.sortOrder}
+						and "sortOrder" < ${cardItem.dataValues.sortOrder}
 						`
 					);
 				}
-				return await cardMedia.update({
+				return await cardItem.update({
 					id,
 					type,
 					options,

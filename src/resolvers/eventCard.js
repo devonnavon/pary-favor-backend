@@ -70,8 +70,8 @@ export default {
 	},
 
 	EventCard: {
-		cardMedia: async (eventCard, args, { models }) => {
-			return await models.CardMedia.findAll({
+		cardItems: async (eventCard, args, { models }) => {
+			return await models.CardItem.findAll({
 				where: {
 					eventCardId: eventCard.id,
 				},

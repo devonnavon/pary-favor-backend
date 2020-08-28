@@ -1,5 +1,5 @@
-const cardMedia = (sequelize, DataTypes) => {
-	const CardMedia = sequelize.define('cardMedia', {
+const cardItem = (sequelize, DataTypes) => {
+	const CardItem = sequelize.define('cardItem', {
 		type: {
 			type: DataTypes.STRING,
 			allowNull: false,
@@ -28,11 +28,11 @@ const cardMedia = (sequelize, DataTypes) => {
 		},
 	});
 
-	CardMedia.associate = (models) => {
-		CardMedia.belongsTo(models.EventCard);
+	CardItem.associate = (models) => {
+		CardItem.belongsTo(models.EventCard);
 	};
 
-	return CardMedia;
+	return CardItem;
 };
 
-export default cardMedia;
+export default cardItem;

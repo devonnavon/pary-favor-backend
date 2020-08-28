@@ -171,7 +171,7 @@ const createUsersWithMessages = async (date) => {
 			size: 'full',
 			sortOrder: 1,
 			eventId: 1,
-			CardItem: [
+			cardItems: [
 				{ type: 'text', options: {}, sortOrder: 1, text: 'hey man yo' },
 				{ type: 'image', options: {}, sortOrder: 2, text: 'please!' },
 			],
@@ -186,7 +186,7 @@ const createUsersWithMessages = async (date) => {
 			size: 'half',
 			sortOrder: 2,
 			eventId: 1,
-			cardItem: [
+			cardItems: [
 				{ type: 'text', options: {}, sortOrder: 1, text: 'hey man yo' },
 				{ type: 'image', options: {}, sortOrder: 2, text: 'please!' },
 			],
@@ -198,7 +198,7 @@ const createUsersWithMessages = async (date) => {
 			size: 'half',
 			sortOrder: 3,
 			eventId: 1,
-			cardItem: [
+			cardItems: [
 				{ type: 'text', options: {}, sortOrder: 1, text: 'hey man yo' },
 				{ type: 'image', options: {}, sortOrder: 2, text: 'please!' },
 			],
@@ -211,7 +211,7 @@ const createUsersWithMessages = async (date) => {
 			size: 'full',
 			sortOrder: 1,
 			eventId: 5,
-			cardItem: [
+			cardItems: [
 				{ type: 'text', options: {}, sortOrder: 1, text: 'hey man yo' },
 				{ type: 'image', options: {}, sortOrder: 2, text: 'please!' },
 			],
@@ -223,7 +223,7 @@ const createUsersWithMessages = async (date) => {
 			size: 'half',
 			sortOrder: 2,
 			eventId: 5,
-			cardItem: [
+			cardItems: [
 				{ type: 'text', options: {}, sortOrder: 1, text: 'hey man yo' },
 				{ type: 'image', options: {}, sortOrder: 2, text: 'please!' },
 			],
@@ -235,7 +235,7 @@ const createUsersWithMessages = async (date) => {
 			size: 'half',
 			sortOrder: 3,
 			eventId: 5,
-			cardItem: [
+			cardItems: [
 				{ type: 'text', options: {}, sortOrder: 1, text: 'hey man yo' },
 				{ type: 'image', options: {}, sortOrder: 2, text: 'please!' },
 			],

@@ -32,7 +32,7 @@ const models = {
 	Event: event(sequelize, DataTypes),
 	EventCard: eventCard(sequelize, DataTypes),
 	CardItem: cardItem(sequelize, DataTypes),
-	cardItemLayout: cardItemLayout(sequelize, DataTypes),
+	CardItemLayout: cardItemLayout(sequelize, DataTypes),
 	LandingText: landingText(sequelize, DataTypes),
 };
 

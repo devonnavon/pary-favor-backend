@@ -1,5 +1,9 @@
 const cardItemLayout = (sequelize, DataTypes) => {
 	const CardItemLayout = sequelize.define('cardItemLayout', {
+		screen: {
+			type: DataTypes.STRING,
+			allowNull: false,
+		},
 		x: {
 			type: DataTypes.INTEGER,
 			allowNull: false,

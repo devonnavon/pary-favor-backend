@@ -184,8 +184,19 @@ const createUsersWithMessages = async (date) => {
 			sortOrder: 1,
 			eventId: 1,
 			cardItems: [
-				{ type: 'text', text: 'hey man yo' },
-				{ type: 'image', text: 'please!' },
+				{ type: 'text', text: 'foxwarren 3xxx' },
+				{
+					type: 'image',
+					url: 'https://sorekara.s3-us-west-1.amazonaws.com/0015185617_10.jpg',
+				},
+				{
+					type: 'image',
+					url: 'https://sorekara.s3-us-west-1.amazonaws.com/0015185617_10.jpg',
+				},
+				{
+					type: 'image',
+					url: 'https://sorekara.s3-us-west-1.amazonaws.com/0015185617_10.jpg',
+				},
 			],
 		},
 		{
@@ -193,67 +204,122 @@ const createUsersWithMessages = async (date) => {
 		}
 	);
 
-	await models.EventCard.create(
-		{
-			// size: 'half',
-			sortOrder: 2,
-			eventId: 1,
-			cardItems: [
-				{ type: 'text', text: 'hey man yo' },
-				{ type: 'image', text: 'please!' },
-			],
-		},
-		{ include: [models.CardItem] }
-	);
-	await models.EventCard.create(
-		{
-			// size: 'half',
-			sortOrder: 3,
-			eventId: 1,
-			cardItems: [
-				{ type: 'text', text: 'hey man yo' },
-				{ type: 'image', text: 'please!' },
-			],
-		},
-		{ include: [models.CardItem] }
-	);
+	// await models.EventCard.create(
+	// 	{
+	// 		// size: 'half',
+	// 		sortOrder: 2,
+	// 		eventId: 1,
+	// 		cardItems: [
+	// 			{ type: 'text', text: 'jimi 3x' },
+	// 			{
+	// 				type: 'image',
+	// 				url:
+	// 					'https://sorekara.s3-us-west-1.amazonaws.com/Are_You_Experienced_-_US_cover-edit.jpg',
+	// 			},
+	// 			{
+	// 				type: 'image',
+	// 				url:
+	// 					'https://sorekara.s3-us-west-1.amazonaws.com/Are_You_Experienced_-_US_cover-edit.jpg',
+	// 			},
+	// 			{
+	// 				type: 'image',
+	// 				url:
+	// 					'https://sorekara.s3-us-west-1.amazonaws.com/Are_You_Experienced_-_US_cover-edit.jpg',
+	// 			},
+	// 		],
+	// 	},
+	// 	{ include: [models.CardItem] }
+	// );
+	// await models.EventCard.create(
+	// 	{
+	// 		// size: 'half',
+	// 		sortOrder: 3,
+	// 		eventId: 1,
+	// 		cardItems: [
+	// 			{ type: 'text', text: 'of montreal only twice :(' },
+	// 			{
+	// 				type: 'image',
+	// 				url: 'https://sorekara.s3-us-west-1.amazonaws.com/61Tioa2nMYL.jpg',
+	// 			},
+	// 			{
+	// 				type: 'image',
+	// 				url: 'https://sorekara.s3-us-west-1.amazonaws.com/61Tioa2nMYL.jpg',
+	// 			},
+	// 		],
+	// 	},
+	// 	{ include: [models.CardItem] }
+	// );
 
-	await models.EventCard.create(
+	//**********************************************************************
+	//						EVENT CARD SEEDING
+	//**********************************************************************
+
+	await models.CardItemLayout.bulkCreate([
 		{
-			// size: 'full',
-			sortOrder: 1,
-			eventId: 5,
-			cardItems: [
-				{ type: 'text', text: 'hey man yo' },
-				{ type: 'image', text: 'please!' },
-			],
+			screen: 'md',
+			x: 0,
+			y: 0,
+			w: 12,
+			h: 1,
+			cardItemId: 1,
 		},
-		{ include: [models.CardItem] }
-	);
-	await models.EventCard.create(
 		{
-			// size: 'half',
-			sortOrder: 2,
-			eventId: 5,
-			cardItems: [
-				{ type: 'text', text: 'hey man yo' },
-				{ type: 'image', text: 'please!' },
-			],
+			screen: 'sm',
+			x: 0,
+			y: 0,
+			w: 3,
+			h: 1,
+			cardItemId: 1,
 		},
-		{ include: [models.CardItem] }
-	);
-	await models.EventCard.create(
 		{
-			// size: 'half',
-			sortOrder: 3,
-			eventId: 5,
-			cardItems: [
-				{ type: 'text', text: 'hey man yo' },
-				{ type: 'image', text: 'please!' },
-			],
+			screen: 'md',
+			x: 0,
+			y: 1,
+			w: 4,
+			h: 4,
+			cardItemId: 2,
 		},
-		{ include: [models.CardItem] }
-	);
+		{
+			screen: 'sm',
+			x: 0,
+			y: 1,
+			w: 4,
+			h: 4,
+			cardItemId: 2,
+		},
+		{
+			screen: 'md',
+			x: 4,
+			y: 1,
+			w: 4,
+			h: 4,
+			cardItemId: 3,
+		},
+		{
+			screen: 'sm',
+			x: 0,
+			y: 5,
+			w: 4,
+			h: 4,
+			cardItemId: 3,
+		},
+		{
+			screen: 'md',
+			x: 8,
+			y: 1,
+			w: 4,
+			h: 4,
+			cardItemId: 4,
+		},
+		{
+			screen: 'sm',
+			x: 0,
+			y: 9,
+			w: 4,
+			h: 4,
+			cardItemId: 4,
+		},
+	]);
 };
 
 export default { createUsersWithMessages, createLandingPageContent };

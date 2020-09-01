@@ -191,11 +191,12 @@ const createUsersWithMessages = async (date) => {
 				},
 				{
 					type: 'image',
-					url: 'https://sorekara.s3-us-west-1.amazonaws.com/0015185617_10.jpg',
+					url:
+						'https://sorekara.s3-us-west-1.amazonaws.com/Are_You_Experienced_-_US_cover-edit.jpg',
 				},
 				{
 					type: 'image',
-					url: 'https://sorekara.s3-us-west-1.amazonaws.com/0015185617_10.jpg',
+					url: 'https://sorekara.s3-us-west-1.amazonaws.com/61Tioa2nMYL.jpg',
 				},
 			],
 		},

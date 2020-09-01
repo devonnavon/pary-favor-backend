@@ -33,11 +33,19 @@ export default {
 				return await cardItem.update({
 					id,
 					type,
-
 					url,
 					text,
 				});
 			}
 		),
+	},
+	CardItem: {
+		layout: async (cardItem, args, { models }) => {
+			return await models.CardItemLayout.findAll({
+				where: {
+					cardItemId: cardItem.id,
+				},
+			});
+		},
 	},
 };

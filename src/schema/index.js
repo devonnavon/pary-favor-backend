@@ -5,6 +5,7 @@ import messageSchema from './message';
 import eventSchema from './event';
 import eventCardSchema from './eventCard';
 import cardItemSchema from './cardItem';
+import cardItemLayoutSchema from './cardItemLayout';
 
 import landingTextSchema from './landingText';
 
@@ -33,6 +34,7 @@ export default [
 	eventSchema,
 	eventCardSchema,
 	cardItemSchema,
+	cardItemLayoutSchema,
 	landingTextSchema,
 	fileSchema,
 ];

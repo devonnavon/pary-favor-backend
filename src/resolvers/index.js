@@ -4,6 +4,7 @@ import messageResolvers from './message';
 import eventResolvers from './event';
 import eventCardResolvers from './eventCard';
 import cardItemResolvers from './cardItem';
+import cardItemLayoutResolvers from './cardItemLayout';
 
 import landingTextResolvers from './landingText';
 
@@ -20,6 +21,7 @@ export default [
 	eventResolvers,
 	eventCardResolvers,
 	cardItemResolvers,
+	cardItemLayoutResolvers,
 	landingTextResolvers,
 	fileResolvers,
 ];

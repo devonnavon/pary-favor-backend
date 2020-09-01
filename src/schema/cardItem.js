@@ -17,5 +17,6 @@ export default gql`
 		type: String!
 		url: String
 		text: String
+		layout: [CardItemLayout]
 	}
 `;

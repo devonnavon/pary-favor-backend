@@ -5,28 +5,17 @@ export default gql`
 		createCardItem(
 			eventCardId: ID!
 			type: String!
-			options: String
 			url: String
 			text: String
-			sortOrder: Int!
 		): CardItem!
 		deleteCardItem(id: ID!): Boolean!
-		updateCardItem(
-			id: ID!
-			type: String
-			options: String
-			url: String
-			text: String
-			sortOrder: Int
-		): CardItem!
+		updateCardItem(id: ID!, type: String, url: String, text: String): CardItem!
 	}
 
 	type CardItem {
 		id: ID!
 		type: String!
-		options: String
 		url: String
 		text: String
-		sortOrder: Int!
 	}
 `;

@@ -8,10 +8,10 @@ export default {
 		createEventCard: combineResolvers(
 			isAuthenticated,
 			// isEventCardOwner,
-			async (parent, { eventId, size, sortOrder }, { models }) => {
+			async (parent, { eventId, sortOrder }, { models }) => {
 				return await models.EventCard.create({
 					eventId,
-					size,
+
 					sortOrder,
 				});
 			}
@@ -38,7 +38,7 @@ export default {
 		updateEventCard: combineResolvers(
 			isAuthenticated,
 			// isEventCardOwner,
-			async (parent, { id, size, sortOrder }, { models, sequelize }) => {
+			async (parent, { id, sortOrder }, { models, sequelize }) => {
 				let eventCard = await models.EventCard.findByPk(id);
 				if (!sortOrder) {
 					return await eventCard.update({ size });
@@ -64,7 +64,7 @@ export default {
 						`
 					);
 				}
-				return await eventCard.update({ size, sortOrder });
+				return await eventCard.update({ sortOrder });
 			}
 		),
 	},

@@ -7,18 +7,12 @@ export default {
 		createCardItem: combineResolvers(
 			isAuthenticated,
 			// isCardItemOwner,
-			async (
-				parent,
-				{ eventCardId, type, options, url, text, sortOrder },
-				{ models }
-			) => {
+			async (parent, { eventCardId, type, url, text }, { models }) => {
 				return await models.CardItem.create({
 					eventCardId,
 					type,
-					options,
 					url,
 					text,
-					sortOrder,
 				});
 			}
 		),
@@ -27,16 +21,6 @@ export default {
 			isAuthenticated,
 			// isCardItemOwner,
 			async (parent, { id }, { models, sequelize }) => {
-				let card = await models.CardItem.findByPk(id);
-				if (!card) return 0;
-				await sequelize.query(
-					`
-					update "cardItem"
-					set "sortOrder" = "sortOrder" - 1
-					where "eventCardId"=${card.dataValues.eventCardId}
-					and "sortOrder" > ${card.dataValues.sortOrder}
-					`
-				);
 				return await models.CardItem.destroy({ where: { id } });
 			}
 		),
@@ -44,48 +28,14 @@ export default {
 		updateCardItem: combineResolvers(
 			isAuthenticated,
 			// isCardItemOwner,
-			async (
-				parent,
-				{ id, type, options, url, text, sortOrder },
-				{ models, sequelize }
-			) => {
+			async (parent, { id, type, url, text }, { models, sequelize }) => {
 				let cardItem = await models.CardItem.findByPk(id);
-				if (!sortOrder) {
-					return await cardItem.update({
-						id,
-						type,
-						options,
-						url,
-						text,
-					});
-				} else if (sortOrder > cardItem.dataValues.sortOrder) {
-					await sequelize.query(
-						`
-						update "cardItem"
-						set "sortOrder" = "sortOrder" - 1
-						where "eventCardId"=${cardItem.dataValues.eventCardId}
-						and "sortOrder" <= ${sortOrder}
-						and "sortOrder" > ${cardItem.dataValues.sortOrder}
-						`
-					);
-				} else if (sortOrder < cardItem.dataValues.sortOrder) {
-					await sequelize.query(
-						`
-						update "cardItem"
-						set "sortOrder" = "sortOrder" + 1
-						where "eventCardId"=${cardItem.dataValues.eventCardId}
-						and "sortOrder" >= ${sortOrder}
-						and "sortOrder" < ${cardItem.dataValues.sortOrder}
-						`
-					);
-				}
 				return await cardItem.update({
 					id,
 					type,
-					options,
+
 					url,
 					text,
-					sortOrder,
 				});
 			}
 		),

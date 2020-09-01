@@ -1,6 +1,10 @@
 import models, { sequelize } from '../models';
 import { text } from 'express';
 
+//**********************************************************************
+//						LANDING PAGE CONTENT
+//**********************************************************************
+
 const createLandingPageContent = async () => {
 	await models.LandingText.create({
 		title: 'the space',
@@ -34,6 +38,10 @@ const createLandingPageContent = async () => {
 			'Ultimately, sorekara aims to provide a space where you can revel in the post event glow with your community of like-minded folks.',
 	});
 };
+
+//**********************************************************************
+//				USER SEEDING WITH MESSAGES AND EVENTS
+//**********************************************************************
 
 const createUsersWithMessages = async (date) => {
 	await models.User.create(
@@ -159,21 +167,25 @@ const createUsersWithMessages = async (date) => {
 			published: false,
 			password: 'ronanation',
 			userId: 3,
-			eventCards: [{ size: 'full', sortOrder: 1 }],
+			// eventCards: [{ size: 'full', sortOrder: 1 }],
 		},
 		{
 			include: [models.EventCard],
 		}
 	);
 
+	//**********************************************************************
+	//						EVENT CARD SEEDING
+	//**********************************************************************
+
 	await models.EventCard.create(
 		{
-			size: 'full',
+			// size: 'full',
 			sortOrder: 1,
 			eventId: 1,
 			cardItems: [
-				{ type: 'text', options: {}, sortOrder: 1, text: 'hey man yo' },
-				{ type: 'image', options: {}, sortOrder: 2, text: 'please!' },
+				{ type: 'text', text: 'hey man yo' },
+				{ type: 'image', text: 'please!' },
 			],
 		},
 		{
@@ -183,24 +195,24 @@ const createUsersWithMessages = async (date) => {
 
 	await models.EventCard.create(
 		{
-			size: 'half',
+			// size: 'half',
 			sortOrder: 2,
 			eventId: 1,
 			cardItems: [
-				{ type: 'text', options: {}, sortOrder: 1, text: 'hey man yo' },
-				{ type: 'image', options: {}, sortOrder: 2, text: 'please!' },
+				{ type: 'text', text: 'hey man yo' },
+				{ type: 'image', text: 'please!' },
 			],
 		},
 		{ include: [models.CardItem] }
 	);
 	await models.EventCard.create(
 		{
-			size: 'half',
+			// size: 'half',
 			sortOrder: 3,
 			eventId: 1,
 			cardItems: [
-				{ type: 'text', options: {}, sortOrder: 1, text: 'hey man yo' },
-				{ type: 'image', options: {}, sortOrder: 2, text: 'please!' },
+				{ type: 'text', text: 'hey man yo' },
+				{ type: 'image', text: 'please!' },
 			],
 		},
 		{ include: [models.CardItem] }
@@ -208,36 +220,36 @@ const createUsersWithMessages = async (date) => {
 
 	await models.EventCard.create(
 		{
-			size: 'full',
+			// size: 'full',
 			sortOrder: 1,
 			eventId: 5,
 			cardItems: [
-				{ type: 'text', options: {}, sortOrder: 1, text: 'hey man yo' },
-				{ type: 'image', options: {}, sortOrder: 2, text: 'please!' },
+				{ type: 'text', text: 'hey man yo' },
+				{ type: 'image', text: 'please!' },
 			],
 		},
 		{ include: [models.CardItem] }
 	);
 	await models.EventCard.create(
 		{
-			size: 'half',
+			// size: 'half',
 			sortOrder: 2,
 			eventId: 5,
 			cardItems: [
-				{ type: 'text', options: {}, sortOrder: 1, text: 'hey man yo' },
-				{ type: 'image', options: {}, sortOrder: 2, text: 'please!' },
+				{ type: 'text', text: 'hey man yo' },
+				{ type: 'image', text: 'please!' },
 			],
 		},
 		{ include: [models.CardItem] }
 	);
 	await models.EventCard.create(
 		{
-			size: 'half',
+			// size: 'half',
 			sortOrder: 3,
 			eventId: 5,
 			cardItems: [
-				{ type: 'text', options: {}, sortOrder: 1, text: 'hey man yo' },
-				{ type: 'image', options: {}, sortOrder: 2, text: 'please!' },
+				{ type: 'text', text: 'hey man yo' },
+				{ type: 'image', text: 'please!' },
 			],
 		},
 		{ include: [models.CardItem] }

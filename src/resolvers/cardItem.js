@@ -7,13 +7,18 @@ export default {
 		createCardItem: combineResolvers(
 			isAuthenticated,
 			// isCardItemOwner,
-			async (parent, { eventCardId, type, url, text }, { models }) => {
-				return await models.CardItem.create({
-					eventCardId,
-					type,
-					url,
-					text,
-				});
+			async (parent, { eventCardId, type, url, text, layouts }, { models }) => {
+				const cardItem = await models.CardItem.create(
+					{
+						eventCardId,
+						type,
+						url,
+						text,
+						cardItemLayouts: layouts,
+					},
+					{ include: [models.CardItemLayout] }
+				);
+				return cardItem;
 			}
 		),
 

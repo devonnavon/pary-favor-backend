@@ -9,11 +9,35 @@ export default {
 			isAuthenticated,
 			// isEventCardOwner,
 			async (parent, { eventId, sortOrder }, { models }) => {
-				return await models.EventCard.create({
+				const eventCard = await models.EventCard.create({
 					eventId,
-
 					sortOrder,
 				});
+				const item = await models.CardItem.create(
+					{
+						eventCardId: eventCard.id,
+						type: null,
+						cardItemLayouts: [
+							{
+								screen: 'md',
+								x: 0,
+								y: 0,
+								w: 12,
+								h: 1,
+							},
+							{
+								screen: 'sm',
+								x: 0,
+								y: 0,
+								w: 3,
+								h: 1,
+							},
+						],
+					},
+					{ include: [models.CardItemLayout] }
+				);
+				console.log(item);
+				return eventCard;
 			}
 		),
 

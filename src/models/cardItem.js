@@ -18,6 +18,10 @@ const cardItem = (sequelize, DataTypes) => {
 		CardItem.belongsTo(models.EventCard);
 	};
 
+	CardItem.associate = (models) => {
+		CardItem.hasMany(models.CardItemLayout, { onDelete: 'CASCADE' });
+	};
+
 	return CardItem;
 };
 

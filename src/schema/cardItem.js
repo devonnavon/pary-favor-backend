@@ -14,7 +14,7 @@ export default gql`
 
 	type CardItem {
 		id: ID!
-		type: String!
+		type: String
 		url: String
 		text: String
 		layout: [CardItemLayout]

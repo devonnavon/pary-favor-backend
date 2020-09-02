@@ -2,13 +2,7 @@ const cardItem = (sequelize, DataTypes) => {
 	const CardItem = sequelize.define('cardItem', {
 		type: {
 			type: DataTypes.STRING,
-			allowNull: false,
-			validate: {
-				notEmpty: {
-					args: true,
-					msg: 'Empty type',
-				},
-			},
+			allowNull: true,
 		},
 		url: {
 			type: DataTypes.STRING,

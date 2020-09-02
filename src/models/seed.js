@@ -184,7 +184,7 @@ const createUsersWithMessages = async (date) => {
 			sortOrder: 1,
 			eventId: 1,
 			cardItems: [
-				{ type: 'text', text: 'foxwarren 3xxx' },
+				{ type: null }, //'text', text: 'foxwarren 3xxx' },
 				{
 					type: 'image',
 					url: 'https://sorekara.s3-us-west-1.amazonaws.com/0015185617_10.jpg',

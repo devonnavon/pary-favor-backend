@@ -7,7 +7,7 @@ export default gql`
 			type: String
 			url: String
 			text: String
-			layouts: [layoutInput]
+			layouts: [layoutInput!]!
 		): CardItem!
 		deleteCardItem(id: ID!): Boolean!
 		updateCardItem(id: ID!, type: String, url: String, text: String): CardItem!

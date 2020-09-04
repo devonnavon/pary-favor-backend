@@ -284,8 +284,8 @@ const createUsersWithMessages = async (date) => {
 			screen: 'sm',
 			x: 0,
 			y: 1,
-			w: 4,
-			h: 4,
+			w: 3,
+			h: 3,
 			cardItemId: 2,
 		},
 		{
@@ -300,8 +300,8 @@ const createUsersWithMessages = async (date) => {
 			screen: 'sm',
 			x: 0,
 			y: 5,
-			w: 4,
-			h: 4,
+			w: 3,
+			h: 3,
 			cardItemId: 3,
 		},
 		{
@@ -316,8 +316,8 @@ const createUsersWithMessages = async (date) => {
 			screen: 'sm',
 			x: 0,
 			y: 9,
-			w: 4,
-			h: 4,
+			w: 3,
+			h: 3,
 			cardItemId: 4,
 		},
 	]);
